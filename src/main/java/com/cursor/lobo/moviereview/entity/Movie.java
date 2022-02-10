@@ -48,7 +48,7 @@ public class Movie {
     private String shortDescription;
 
     @Column(name = "rateValue")
-    private int rateValue;
+    private Double rateValue;
 
     @OneToOne(mappedBy = "movie")
     private Rate rate;

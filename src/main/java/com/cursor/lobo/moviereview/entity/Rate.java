@@ -28,7 +28,7 @@ public class Rate {
 
 
     @Column(name = "rateValue")
-    private int rateValue;
+    private Double rateValue;
 
     @Column(name = "countOfVotes")
     private int countOfVotes;
