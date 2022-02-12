@@ -2,7 +2,7 @@ package com.cursor.lobo.moviereview.service;
 
 import com.cursor.lobo.moviereview.comparator.MovieComparator;
 import com.cursor.lobo.moviereview.dto.MovieDto;
-import com.cursor.lobo.moviereview.dto.MovieDtoForList;
+import com.cursor.lobo.moviereview.dto.MovieDtoWIthCutInfo;
 import com.cursor.lobo.moviereview.entity.Movie;
 import com.cursor.lobo.moviereview.mapping.MovieDtoForListMapper;
 import com.cursor.lobo.moviereview.mapping.MovieDtoMapper;
@@ -83,9 +83,9 @@ public class MovieService {
         return null;
     }
 
-    public List<MovieDtoForList> returnListOfMovieWithCutInfo() {
+    public List<MovieDtoWIthCutInfo> returnListOfMovieWithCutInfo() {
         List<Movie> movieList = movieRepository.findAll();
-        List<MovieDtoForList> returnList = movieList.stream().map(movie -> movieDtoForListMapper.convert(movie))
+        List<MovieDtoWIthCutInfo> returnList = movieList.stream().map(movie -> movieDtoForListMapper.convert(movie))
                 .collect(Collectors.toList());
         return returnList;
     }
