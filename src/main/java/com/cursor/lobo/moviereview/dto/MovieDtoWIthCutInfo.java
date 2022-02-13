@@ -5,14 +5,14 @@ import com.cursor.lobo.moviereview.enums.Genre;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
+
 import java.util.Set;
 
-@Component
+//@Component
 @Setter
 @Getter
 @Builder
-public class MovieDtoForList {
+public class MovieDtoWIthCutInfo {
     String name;
     Set<Genre> genres;
     Rate rating;
