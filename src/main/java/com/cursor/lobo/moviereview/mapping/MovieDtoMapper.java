@@ -18,9 +18,9 @@ public class MovieDtoMapper {
                 .id(movie.getId())
                 .name(movie.getName())
                 .director(movie.getDirector())
-                .rateValue(movie.getRateValue())
                 .shortDescription(movie.getShortDescription())
-                .genre(movie.getCategory().stream().map(category -> category.getGenre()).collect(Collectors.toSet()))
+                .categories(movie.getCategory())
+                .rateValue(movie.getRateValue())
                 .reviews(reviewRepository.findAllByMovie(movie))
                 .build();
     }

@@ -19,7 +19,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -39,7 +39,7 @@ public class Movie {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "movie_categories", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> category;
+    private Set<Category> category;
 
     @Column(name = "director")
     private String director;
@@ -47,10 +47,8 @@ public class Movie {
     @Column(name = "shortDescription")
     private String shortDescription;
 
-    @Column(name = "rateValue")
-    private Double rateValue;
-
-    @OneToOne(mappedBy = "movie")
-    private Rate rate;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "rate_id", referencedColumnName = "id")
+    private Rate rateValue;
 
 }

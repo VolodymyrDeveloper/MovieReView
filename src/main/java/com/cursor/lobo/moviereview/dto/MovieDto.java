@@ -1,6 +1,7 @@
 package com.cursor.lobo.moviereview.dto;
 
-import com.cursor.lobo.moviereview.enums.Genre;
+import com.cursor.lobo.moviereview.entity.Category;
+import com.cursor.lobo.moviereview.entity.Rate;
 import com.cursor.lobo.moviereview.entity.Review;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +17,7 @@ public class MovieDto {
     String name;
     String director;
     String shortDescription;
-    Set<Genre> genre;
-    double rateValue;
+    Set<Category> categories;
+    Rate rateValue;
     Set<Review> reviews;
 }

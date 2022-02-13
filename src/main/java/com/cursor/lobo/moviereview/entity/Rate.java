@@ -33,8 +33,10 @@ public class Rate {
     @Column(name = "countOfVotes")
     private int countOfVotes;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "rateValue")
     private Movie movie;
 
+    public int compareTo(Rate rateValue) {
+        return this.rateValue.compareTo(rateValue.getRateValue());
+    }
 }

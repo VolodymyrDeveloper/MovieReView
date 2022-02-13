@@ -1,7 +1,7 @@
 package com.cursor.lobo.moviereview.controller;
 
 import com.cursor.lobo.moviereview.dto.MovieDto;
-import com.cursor.lobo.moviereview.dto.MovieDtoWIthCutInfo;
+import com.cursor.lobo.moviereview.dto.MovieDtoWithCutInfo;
 import com.cursor.lobo.moviereview.entity.Movie;
 import com.cursor.lobo.moviereview.entity.Rate;
 import com.cursor.lobo.moviereview.service.MovieService;
@@ -70,8 +70,8 @@ public class MovieController {
      */
 
     @GetMapping("/list/cut-info")
-    public List<MovieDtoWIthCutInfo> returnListOfMovieWithCutInfo() {
-        List<MovieDtoWIthCutInfo> returnValue = movieService.returnListOfMovieWithCutInfo();
+    public List<MovieDtoWithCutInfo> returnListOfMovieWithCutInfo() {
+        List<MovieDtoWithCutInfo> returnValue = movieService.returnListOfMovieWithCutInfo();
         return returnValue;
     }
 

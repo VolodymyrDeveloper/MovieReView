@@ -1,5 +1,6 @@
 package com.cursor.lobo.moviereview.dto;
 
+import com.cursor.lobo.moviereview.entity.Category;
 import com.cursor.lobo.moviereview.entity.Rate;
 import com.cursor.lobo.moviereview.enums.Genre;
 import lombok.Builder;
@@ -8,12 +9,11 @@ import lombok.Setter;
 
 import java.util.Set;
 
-//@Component
 @Setter
 @Getter
 @Builder
-public class MovieDtoWIthCutInfo {
+public class MovieDtoWithCutInfo {
     String name;
-    Set<Genre> genres;
-    Rate rating;
+    Set<Category> categories;
+    Rate rateValue;
 }

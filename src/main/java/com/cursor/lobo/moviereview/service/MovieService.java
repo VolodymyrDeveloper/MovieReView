@@ -2,9 +2,9 @@ package com.cursor.lobo.moviereview.service;
 
 import com.cursor.lobo.moviereview.comparator.MovieComparator;
 import com.cursor.lobo.moviereview.dto.MovieDto;
-import com.cursor.lobo.moviereview.dto.MovieDtoWIthCutInfo;
+import com.cursor.lobo.moviereview.dto.MovieDtoWithCutInfo;
 import com.cursor.lobo.moviereview.entity.Movie;
-import com.cursor.lobo.moviereview.mapping.MovieDtoForListMapper;
+import com.cursor.lobo.moviereview.mapping.MovieDtoWithCutInfoMapper;
 import com.cursor.lobo.moviereview.mapping.MovieDtoMapper;
 import com.cursor.lobo.moviereview.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class MovieService {
     MovieDtoMapper movieDtoMapper;
 
     @Autowired
-    MovieDtoForListMapper movieDtoForListMapper;
+    MovieDtoWithCutInfoMapper movieDtoForListMapper;
 
     private Optional<Movie> findById(Long id) {
         return movieRepository.findById(id);
@@ -42,24 +42,14 @@ public class MovieService {
     }
 
     public Movie deleteById(Long id) {
-        Optional<Movie> optionalMovie = findById(id);
-        if (optionalMovie.isPresent()) {
+        if (findById(id).isPresent()) {
             movieRepository.deleteById(id);
         }
         return null;
     }
 
     public Movie updateMovieById(Long id, Movie movie) {
-        Optional<Movie> optionalMovie = findById(id);
-        if (optionalMovie.isPresent()) {
-            Movie returnValue = new Movie();
-            movie.setName(movie.getName());
-            movie.setDirector(movie.getDirector());
-            movie.setShortDescription(movie.getShortDescription());
-            movie.setCategory(movie.getCategory());
-            movie.setRateValue(movie.getRateValue());
-            movie.setRate(movie.getRate());
-
+        if (findById(id).isPresent()) {
             return movieRepository.save(movie);
         }
         return null;
@@ -77,17 +67,16 @@ public class MovieService {
         Optional<Movie> optionalMovie = findById(id);
         if (optionalMovie.isPresent()) {
             Movie returnMovie = optionalMovie.get();
-            returnMovie.setRate(rate);
+            returnMovie.setRateValue(rate);
             return movieRepository.save(returnMovie);
         }
         return null;
     }
 
-    public List<MovieDtoWIthCutInfo> returnListOfMovieWithCutInfo() {
+    public List<MovieDtoWithCutInfo> returnListOfMovieWithCutInfo() {
         List<Movie> movieList = movieRepository.findAll();
-        List<MovieDtoWIthCutInfo> returnList = movieList.stream().map(movie -> movieDtoForListMapper.convert(movie))
+        return movieList.stream().map(movie -> movieDtoForListMapper.convert(movie))
                 .collect(Collectors.toList());
-        return returnList;
     }
 
     public List<Movie> returnMoviesSortedByRateValue() {
