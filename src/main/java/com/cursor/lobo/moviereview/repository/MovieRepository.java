@@ -17,8 +17,4 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     @Override
     Optional<Movie> findById(Long Long);
 
-    @Query("select m from Movie m where m.category = :categoryList")
-    List<Movie> findAllByCategory(List<Category> categoryList);
-
-
 }

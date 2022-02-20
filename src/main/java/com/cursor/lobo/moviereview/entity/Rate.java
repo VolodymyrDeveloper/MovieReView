@@ -26,11 +26,10 @@ public class Rate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(name = "rateValue")
+    @Column(name = "rate_value")
     private Double rateValue;
 
-    @Column(name = "countOfVotes")
+    @Column(name = "count_of_votes")
     private int countOfVotes;
 
     @OneToOne(mappedBy = "rateValue")
