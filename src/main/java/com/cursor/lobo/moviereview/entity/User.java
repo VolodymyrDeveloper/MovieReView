@@ -5,12 +5,8 @@ import lombok.Getter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
+import javax.persistence.*;
+import java.util.Set;
 
 
 @Getter
@@ -24,13 +20,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "login", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String login;
 
-    @Column(name = "password",nullable = false)
+    @Column(nullable = false)
     private String password;
 
-    @Column(name = "email", nullable = false)
+    @Column(nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    Set<Review> reviews;
+
+    public void addReview(Movie movie, Review review) {
+        this.reviews.add(review);
+        review.setUser(this);
+        review.setMovie(movie);
+        movie.getReviews().add(review);
+    }
 
 }
