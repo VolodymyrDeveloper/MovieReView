@@ -8,11 +8,9 @@ import java.util.Comparator;
 
 
 public class MovieComparator implements Comparator<MovieWithCutInfoDto>{
-    @Autowired
-    RateDtoComparator rateDtoComparator;
 
     @Override
     public int compare(MovieWithCutInfoDto o1, MovieWithCutInfoDto o2) {
-        return rateDtoComparator.compare(o1.getRateDto(), o2.getRateDto());
+        return o1.getRateDto().getRateValue().compareTo(o2.getRateDto().getRateValue());
     }
 }
